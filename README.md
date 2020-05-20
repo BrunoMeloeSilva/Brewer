@@ -6,3 +6,4 @@ Recursos utilizados:
 	Spring Boot DevTools
 	Spring Data JPA
 	Thymeleaf
+	Java 12
