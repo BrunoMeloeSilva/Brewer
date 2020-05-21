@@ -8,17 +8,26 @@
 	
 	<body>
 		<h1>Olá mundo !</h1>
-		<form method="post">
-			<span th:text="${mensagem}"></span>
+		<!-- Seu eu precisasse usar  ${#fields.detailedErrors() fora do form que ja está setado o obj ${cerveja} -->
+		<!-- Eu deveria usar assim ${#fields.detailedErrors('${cerveja.*}'), setando o obj no metodo e o .* é para indicar que quero todos os erros -->
+		<form method="post" th:object="${cerveja}">
 			
+			<span th:text="${#fields.hasAnyErrors()}"></span>
+			<!-- <span th:text="${mensagem}"></span> -->
+			<div th:each="erro : ${#fields.detailedErrors()}" >
+				<span th:text="${erro.message}" ></span>
+			</div>
+			
+			<br/>
 			<label for="sku">SKU</label>
-			<input  id="sku" type="text" name="sku">
+			<!-- Substitui name="sku" por th:field="*{sku}" assim ele vai pegar o valor do campo th:object="${cerveja}" e colocar no input, alem de manter como name="sku" -->
+			<input  id="sku" type="text" th:field="*{sku}">
 			
 			<label for="nome">Nome</label>
-			<input  id="nome" type="text" name="nome">
+			<input  id="nome" type="text" th:field="*{nome}">
 			
-			<label   for="descricao">Descricao</label>
-			<textarea id="descricao" name="descricao" rows="3" cols="30" ></textarea>
+			<label   for="descricao">Descrição</label>
+			<textarea id="descricao" th:field="*{descricao}" rows="3" cols="30" ></textarea>
 			
 			<input type="submit" value="Salvar">
 		</form>
