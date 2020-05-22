@@ -37,12 +37,6 @@ public class CervejasController {
 		
 		
 	}
-	
-	@RequestMapping("/cerveja/novo2")
-	public String novo2(Cerveja cerveja) {
-		return "cerveja/cadastro-produto";
-	}
-
 }
 
 /*** Notas de estudo 
