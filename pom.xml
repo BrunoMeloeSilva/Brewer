@@ -25,6 +25,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Para poder usar o xmlns:th="http://www.thymeleaf.org" -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -62,6 +63,20 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Essa dependencia é para poder usar os recursos do xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		Que é uma bilbioteca que estende o thymeleaf, me oferecendo o decorator, entre outros.. -->
+		<dependency>
+   			<groupId>nz.net.ultraq.thymeleaf</groupId>
+   			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+		<!-- Após usar a dependencia acima, o aviso passou a ser apresentado: Ocorre quando o Java>8 -->
+		<!--	WARNING: An illegal reflective access operation has occurred -->
+		<!--	WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass -->
+		<!--			(file:/Users/brunosilva/.m2/repository/org/codehaus/groovy/groovy/2.5.11/groovy-2.5.11.jar) -->
+		<!--			to method java.lang.Object.finalize() -->
+		<!--	WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.reflection.CachedClass -->
+		<!--	WARNING: Use __illegal_access=warn to enable warnings of further illegal reflective access operations -->
+		<!--	WARNING: All illegal access operations will be denied in a future release -->
 	</dependencies>
 
 	<build>

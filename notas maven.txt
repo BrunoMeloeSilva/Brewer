@@ -1,0 +1,17 @@
+Depois disso faça uma limpeza no Maven e Eclipse:
+
+- No Eclipse/STS vá em Project > Clean e limpe seu projeto. Depois feche o Eclipse.
+
+- Se na raiz do seu projeto existir a pastar target, exclua ela também.
+
+- Vá na pasta oculta .m2 do Maven. Ela se encontra na sua pasta de usuário. Então exclua o conteúdo da pasta repository. Desta forma o Maven vai baixar todas as dependências novamente na próxima vez que for fazer o build.
+
+- Execute o Eclipse/STS de novo espere ele baixar as dependências do seu projeto. Caso ele não comece a baixar, clique com o botão esquerdo no seu projeto e vá em Maven > Update Project > OK
+
+As dependências podem demorar mais que o normal para baixar, pois você estará baixando tudo novamente.
+
+Depois disso tente executar a aplicação novamente.
+
+PS: Para postar códigos ou erros, utilize os botões auxiliares localizados a esquerda do botão de enviar comentário. Coloque o código no espaço indicado. Assim o código fica mais mais fácil de ler e diminui o espaço ocupado :)
+
+Até!
