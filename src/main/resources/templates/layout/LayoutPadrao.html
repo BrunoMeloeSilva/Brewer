@@ -6,10 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 	<title>Brewer</title>
-
-	<link rel="stylesheet" type="text/css" href="/stylesheets/vendors.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/algaworks.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/application.css"/>
+	<!-- Botão direito em cima do projeto > Properties > busca por Web Project Settings > altera o Context root -->
+	<!-- deve-se usar th:href="@{/stylesheets/vendors.min.css}" ao invés de href="/stylesheets/vendors.min.css" -->
+	<!-- para garantir que não haverá problemas ao mudar o Context Root da aplicação -->
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/algaworks.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/application.css}"/>
 </head>
 <body>
 <div class="aw-layout-page">
@@ -18,7 +20,7 @@
 
 	    <div class="navbar-header">
 	     	<a class="navbar-brand  hidden-xs" href="#">
-	        	<img alt="AlgaWorks" src="/images/logo.png"/>
+	        	<img alt="AlgaWorks" th:src="@{/images/logo.png}"/>
 	      	</a>
 
 	      	<ul class="nav  navbar-nav">
@@ -89,7 +91,7 @@
 		</div>
 	</footer>
 </div>
-<script src="/javascripts/vendors.min.js"></script>
-<script src="/javascripts/algaworks.min.js"></script>
+<script th:src="@{/javascripts/vendors.min.js}"></script>
+<script th:src="@{/javascripts/algaworks.min.js}"></script>
 </body>
 </html>
