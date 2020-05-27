@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.NumberFormat;
+
 
 @Entity
 @Table(name = "cerveja") // Esta anotação é para mudar o nome da tabela no banco de dados.
@@ -33,14 +35,20 @@ public class Cerveja {
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
 	private String descricao;
 
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 
 	@Column(name = "teor_alcoolico")
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal teorAlcoolico;
 
+	//Issa formatação é obrigatória, pois o valor chegará como 10,00 devido o maskMonkey
+	// e deve ser convertido para 10.00 para poder ser aceito pelo objeto.
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal comissao;
 
 	@Column(name = "quantidade_estoque")
+	@NumberFormat(pattern = "#,##")
 	private Integer quantidadeEstoque;
 
 	@Enumerated(EnumType.STRING) //EnumType.STRING porque eu quero que vá a descricao para o DB, e não o index.
