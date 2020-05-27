@@ -2,38 +2,44 @@ package bms.brewer.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import bms.brewer.model.Cerveja;
+import bms.brewer.model.Origem;
+import bms.brewer.model.Sabor;
+import bms.brewer.repository.Estilos;
 
 @Controller
 public class CervejasController {
 	
+	@Autowired
+	Estilos estilos;
+	
 	@RequestMapping("/cerveja/novo")
-	public String novo(Cerveja cerveja) {
-		return "cerveja/CadastroCerveja";
-		//return "layout/LayoutPadrao";
+	public ModelAndView novo(Cerveja cerveja) {
+		ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
+		modelAndView.addObject("sabores", Sabor.values());
+		modelAndView.addObject("estilos", estilos.findAll());
+		modelAndView.addObject("origens", Origem.values());
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/cerveja/novo", method = RequestMethod.POST)
-	public String cadastrar(@Valid Cerveja cerveja, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		
+		ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
 		if(bindingResult.hasErrors()) {
-			//redirectAttributes.addFlashAttribute("mensagem", "Deu pau ao criar o obj cerveja");
-			//return "redirect:/cerveja/novo";
-			
-			//return "cerveja/CadastroCerveja";
-			
-			//com essa chamada, fica mais organizado, ao invés de usar a linha acima..
 			return novo(cerveja);
 		}else {
 			model.addAttribute("mensagem", "Cadastrado com sucesso a cerveja de código: " + cerveja.getSku());
-			return "cerveja/CadastroCerveja"; 
+			return modelAndView; 
 		}
 		
 		

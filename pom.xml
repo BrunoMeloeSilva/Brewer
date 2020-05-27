@@ -8,6 +8,7 @@
 		<version>2.2.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>bms</groupId>
 	<artifactId>brewer</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
@@ -57,11 +58,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- SGBD -->
+		<!-- SGBD 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<!-- Essa dependencia é para poder usar os recursos do xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		Que é uma bilbioteca que estende o thymeleaf, me oferecendo o decorator, entre outros.. -->
