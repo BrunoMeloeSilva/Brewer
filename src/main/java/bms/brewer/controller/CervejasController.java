@@ -36,8 +36,11 @@ public class CervejasController {
 		
 		ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
 		if(bindingResult.hasErrors()) {
+			System.out.println("Teve erro no bindingResult: " + bindingResult.getAllErrors());
+			System.out.println(cerveja.toString());
 			return novo(cerveja);
 		}else {
+			System.out.println(cerveja.toString());
 			model.addAttribute("mensagem", "Cadastrado com sucesso a cerveja de código: " + cerveja.getSku());
 			return modelAndView; 
 		}

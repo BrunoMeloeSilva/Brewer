@@ -166,4 +166,14 @@ public class Cerveja {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Cerveja [codigo=" + codigo + ", sku=" + sku + ", nome=" + nome + ", descricao=" + descricao + ", valor="
+				+ valor + ", teorAlcoolico=" + teorAlcoolico + ", comissao=" + comissao + ", quantidadeEstoque="
+				+ quantidadeEstoque + ", origem=" + origem + ", sabor=" + sabor + ", estilo=" + estilo 
+				+ "]";
+	}
+	
+	
+
 }
