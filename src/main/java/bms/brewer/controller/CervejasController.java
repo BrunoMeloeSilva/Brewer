@@ -34,15 +34,15 @@ public class CervejasController {
 	@RequestMapping(value = "/cerveja/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		
-		ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
+		//ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
 		if(bindingResult.hasErrors()) {
 			System.out.println("Teve erro no bindingResult: " + bindingResult.getAllErrors());
-			System.out.println(cerveja.toString());
+			System.out.println("Tece errros em: " + cerveja.toString());
 			return novo(cerveja);
 		}else {
-			System.out.println(cerveja.toString());
+			System.out.println("Cerveja criado com sucesso: " + cerveja.toString());
 			model.addAttribute("mensagem", "Cadastrado com sucesso a cerveja de código: " + cerveja.getSku());
-			return modelAndView; 
+			return novo(cerveja); 
 		}
 		
 		

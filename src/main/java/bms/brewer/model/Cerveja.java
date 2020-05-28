@@ -178,9 +178,13 @@ public class Cerveja {
 	public String toString() {
 		return "Cerveja [codigo=" + codigo + ", sku=" + sku + ", nome=" + nome + ", descricao=" + descricao + ", valor="
 				+ valor + ", teorAlcoolico=" + teorAlcoolico + ", comissao=" + comissao + ", quantidadeEstoque="
-				+ quantidadeEstoque + ", origem=" + origem + ", sabor=" + sabor + ", estilo=" + estilo 
-				+ "]";
+				+ quantidadeEstoque + ", origem=" + origem + ", sabor=" + sabor + ", estilo=" + estilo +" ]\n"
+				+ "Estilo [codigo=" + estilo.getCodigo() + ", nome=" + estilo.getNome()+ " ]\n"
+				+ "Origem [ordinal=" + origem.ordinal() + ", nome=" + origem.name()+ " ]\n"
+				+ "Sabor  [ordinal=" + sabor.ordinal() + ", nome=" + sabor.name()+ " ]";
 	}
+
+	
 	
 	
 
