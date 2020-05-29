@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.NumberFormat;
 
+import bms.brewer.validation.SKU;
+
 
 @Entity
 @Table(name = "cerveja") // Esta anotação é para mudar o nome da tabela no banco de dados.
@@ -27,6 +29,13 @@ public class Cerveja {
 	private Long codigo;
 
 	@NotBlank(message = "SKU é obrigatório")
+	//Obriga o valor que vier ter este padrao definido pelo regex
+	//Se eu colocar o simbolo ? no final "([a-zA-Z]{2}\\d{4})?" 
+	//esta validacao so ocorrerá quando houver valor
+	//@Pattern(regexp = "([a-zA-Z]{2}\\d{4})", message = "SKU deve conter duas letras e quatro numeros")
+	
+	//Anotacao customizada que eu criei !
+	@SKU
 	private String sku;
 
 	@NotBlank(message = "Nome é obrigatório")
@@ -43,7 +52,8 @@ public class Cerveja {
 	private BigDecimal teorAlcoolico;
 
 	//Issa formatação é obrigatória, pois o valor chegará como 10,00 devido o maskMonkey
-	// e deve ser convertido para 10.00 para poder ser aceito pelo objeto.
+	// e deve ser convertido para 10.00 para poder ser aceito pelo objeto. Essa anotação
+	//pega o numero e formata conforme o pattern definido.
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal comissao;
 
