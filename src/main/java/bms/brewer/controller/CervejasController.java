@@ -15,12 +15,16 @@ import bms.brewer.model.Cerveja;
 import bms.brewer.model.Origem;
 import bms.brewer.model.Sabor;
 import bms.brewer.repository.Estilos;
+import bms.brewer.service.CervejasService;
 
 @Controller
 public class CervejasController {
 	
 	@Autowired
 	Estilos estilos;
+	
+	@Autowired
+	CervejasService cervejasService;
 	
 	@RequestMapping("/cerveja/novo")
 	public ModelAndView novo(Cerveja cerveja) {
@@ -34,15 +38,15 @@ public class CervejasController {
 	@RequestMapping(value = "/cerveja/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		
-		//ModelAndView modelAndView = new ModelAndView("cerveja/CadastroCerveja");
 		if(bindingResult.hasErrors()) {
 			System.out.println("Teve erro no bindingResult: " + bindingResult.getAllErrors());
-			System.out.println("Tece errros em: " + cerveja.toString());
+			//System.out.println("Erro ao criar obj cerveja: " + cerveja.toString());
 			return novo(cerveja);
 		}else {
-			System.out.println("Cerveja criado com sucesso: " + cerveja.toString());
-			model.addAttribute("mensagem", "Cadastrado com sucesso a cerveja de código: " + cerveja.getSku());
-			return novo(cerveja); 
+			cervejasService.salvar(cerveja);
+			ModelAndView modelAndView = new ModelAndView("redirect:/cerveja/novo");
+			redirectAttributes.addFlashAttribute("mensagem", "Cerveja cadastrada com sucesso.");
+			return modelAndView;
 		}
 		
 		
