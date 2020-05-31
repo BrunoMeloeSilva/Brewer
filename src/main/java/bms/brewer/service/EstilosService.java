@@ -15,7 +15,7 @@ public class EstilosService {
 	@Autowired
 	Estilos estilos;
 	
-	public void salvar(Estilo estilo) {
+	public Estilo salvar(Estilo estilo) {
 		
 		Optional<Estilo> findByNomeIgnoreCase = estilos.findByNomeIgnoreCase(estilo.getNome());
 		
@@ -23,6 +23,7 @@ public class EstilosService {
 			throw new NomeEstiloJaCadastradoException("Nome do estilo já cadastrado");
 		}
 		
-		this.estilos.save(estilo);
+		return this.estilos.saveAndFlush(estilo);
+		//Para salvar e retornar o ID
 	}
 }
