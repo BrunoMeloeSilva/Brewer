@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import bms.brewer.model.Estilo;
 import bms.brewer.service.EstilosService;
+import bms.brewer.service.exception.NomeEstiloJaCadastradoException;
 
 @Controller
 public class EstiloController {
@@ -25,13 +26,21 @@ public class EstiloController {
 	}
 	
 	@RequestMapping(value = "/estilos/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult result, RedirectAttributes attributes) {
-		if (result.hasErrors()) {
+	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
+		if (bindingResult.hasErrors()) { 
 			return novo(estilo);
 		}
 		
-		estilosService.salvar(estilo);
-		attributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso");
+		try { 
+			estilosService.salvar(estilo); 
+		}
+		catch(NomeEstiloJaCadastradoException e) {
+			bindingResult.rejectValue("nome", e.getMessage(), e.getMessage());
+			return novo(estilo);
+		}
+		
+		redirectAttributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso");
 		return new ModelAndView("redirect:/estilos/novo");
 	}
 }
