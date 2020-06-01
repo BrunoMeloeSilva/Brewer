@@ -7,3 +7,4 @@ Recursos utilizados:
 	Spring Data JPA
 	Thymeleaf
 	Java 12
+	MySql
