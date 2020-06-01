@@ -6,7 +6,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}">
-
 <!-- 0. Devido a instrução layout:decorator="layout/LayoutPadrao", o conteudo do arquivo 
 		LayoutPadrao.html é copiado para cá, CadastroCerveja.html
 	 1. Essa tag <section layout:fragment="conteudo">, será completamente substituida pela 
@@ -16,13 +15,17 @@
 	 	<section class="aw-layout-content  js-content" layout:fragment="conteudo"></section> 
 	 	do LayoutPadrao.html
 	 3. O resultado dessa montagem é seu CadastroCerveja.html final, que será entregue.-->
+	 
+<head>
+	<title>Cadastro de cerveja</title>
+	<link rel="stylesheet" th:href="@{/stylesheets/vendors/upload.min.css}"/>
+</head>
+
 <section layout:fragment="conteudo">
 
 	<div class="page-header">
 		<div class="container-fluid">
-			<h1>
-				Cadastro de cerveja
-			</h1>
+			<h1>Cadastro de cerveja</h1>
 		</div>
 	</div>
 
@@ -130,6 +133,18 @@
 				</div>
 			</div>
 			
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label class="control-label">Foto</label>
+					
+					<div id="upload-drop" class="bw-upload">
+						<i class="glyphicon  glyphicon-cloud-upload"></i>
+						<span>Arraste a foto aqui ou </span>
+						<a class="bw-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+					</div>
+				</div>
+			</div>
+			
 			<div class="form-group">
 				<button class="btn  btn-primary" type="submit">Salvar</button>
 			</div>
@@ -140,5 +155,19 @@
 </section>
 	<th:block layout:fragment="js-extra">
 		<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
+		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+		<script>
+			$(function() {
+				var settings = {
+						type: 'json',
+						filelimit: 1,
+						allow: '*.(jpg|jpeg|png)'
+				};
+				
+				UIkit.uploadSelect($('#upload-select'), settings);
+				UIkit.uploadDrop($('#upload-drop'), settings);
+			});
+		</script>
 	</th:block>
 </html>
