@@ -88,6 +88,15 @@ public class Cerveja {
 	@JoinColumn(name = "codigo_estilo")//renomeando a fk
 	private Estilo estilo;
 
+	private String foto;
+	
+	@Column(name = "content_Type")
+	private String contentType;
+	
+	
+	
+	
+	
 	//Operacoes a serem realizadas antes de salvar e atualizar no banco de dados.
 	@PrePersist @PreUpdate
 	private void prePersistUpdate() {
@@ -180,6 +189,34 @@ public class Cerveja {
 
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
+	}
+
+	/**
+	 * @return the foto
+	 */
+	public String getFoto() {
+		return foto;
+	}
+
+	/**
+	 * @param foto the foto to set
+	 */
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	/**
+	 * @return the contentType
+	 */
+	public String getContentType() {
+		return contentType;
+	}
+
+	/**
+	 * @param contentType the contentType to set
+	 */
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	@Override
