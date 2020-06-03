@@ -4,8 +4,8 @@ var Brewer = Brewer || {};
 Brewer.MaskMoney = (function() {
 	
 	function MaskMoney() {
-		this.decimal = $('.js-decimal');
-		this.plain = $('.js-plain');
+		this.decimal = $('.js-formatoDecimal');
+		this.plain = $('.js-formatoInteiro'');
 	}
 	
 	MaskMoney.prototype.enable = function() {
@@ -22,7 +22,6 @@ $(function() {
 	maskMoney.enable();
 });
 */
-
 
 $(function(){
 	$('.js-formatoDecimal').maskMoney({
